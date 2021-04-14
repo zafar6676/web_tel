@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+		crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@300;400;700&family=Ubuntu:wght@300;400;700&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="./css/style.css">
+	<title>Telegram Web</title>
+
+
+</head>
+<body>
+	<section class="mainApp">
+		<div class="leftPanel">
+			<header>
+				<button class="trigger">
+					<svg viewBox="0 0 24 24">
+						<path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+					</svg>
+				</button>
+
+				<input class="searchChats" type="search" placeholder="Search..." />
+			</header>
+			<div class="chats">
+				<ul class="users-list">
+					
+				</ul>
+				
+				<!-- <div class="chatButton active">
+					<div class="chatInfo">
+						<div class="image my-image"></div>
+						<p class="name">Bill Gates</p>
+						<p class="message">Actually, more ...</p>
+					</div>
+					<div class="status onTop">
+						<p class="date">00:02</p>
+						<i class="material-icons read">done_all</i>
+						<svg class="fixed" viewBox="0 0 24 24">
+							<path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+						</svg>
+					</div>
+				</div>
+				<div class="chatButton">
+					<div class="chatInfo">
+						<div class="image"></div>
+						<p class="name">Doge</p>
+						<p class="message">Wow!</p>
+					</div>
+					<div class="status normal">
+						<p class="date">Now</p>
+						<p class="count">42</p>
+						<i class="material-icons read">done_all</i>
+						<i class="material-icons fixed">loyalty</i>
+					</div>
+				</div> -->
+			</div>
+		</div>
+
+		<div class="rightPanel">
+			<div class="topBar">
+				<div class="rightSide">
+					<button class="tbButton search">
+						<i class="material-icons">&#xE8B6;</i>
+					</button>
+					<button class="tbButton call">
+            <i class="material-icons">call</i>
+          </button>
+					<button class="tbButton otherOptions">
+						<i class="material-icons">more_vert</i>
+					</button>
+				</div>
+
+				<div class="leftSide">
+					<p class="chatName">Muhammad</p>
+					<p class="chatStatus">Online</p>
+				</div>
+			</div>
+			<div class="convHistory userBg">
+				<!-- CONVERSATION GOES HERE! -->
+				<ul id="myList" class="message-list">
+					
+				</ul>
+			
+				<!-- <div class="msg messageReceived">
+					Dude, why no one did this before?
+					<span class="timestamp">00:00</span>
+				</div>
+
+				<div class="msg messageSent">
+					Dunno...
+					<i class="material-icons readStatus">done_all</i>
+					<span class="timestamp">00:01</span>
+				</div>
+
+				<div class="msg messageReceived">
+					This don't matter now, I did it!
+					<span class="timestamp">00:02</span>
+				</div>
+
+				<div class="msg messageReceived">
+					Hope someone see this... Someday...
+					<span class="timestamp">00:02</span>
+				</div>
+
+				<div class="msg messageSent">
+					Actually, more than 2000 people did this.
+					<i class="material-icons readStatus">done</i>
+					<span class="timestamp">00:04</span>
+				</div> -->
+			</div>
+
+			<div class="replyBar">
+				<button class="attach">
+					<i class="material-icons d45">attach_file</i>
+				</button>
+
+				<input type="text" class="replyMessage message-text" placeholder="Write your message..." / disabled>
+
+				<div class="emojiBar">
+					<div class="emoticonType">
+						<button id="panelEmoji">Emoji</button>
+						<button id="panelStickers">Stickers</button>
+						<button id="panelGIFs">GIFs</button>
+					</div>
+
+
+					<!-- Emoji panel -->
+					<div class="emojiList">
+						<button id="smileface" class="pick">
+						</button>
+						<button id="grinningface" class="pick"></button>
+						<button id="tearjoyface" class="pick"></button>
+						<button id="rofl" class="pick"></button>
+						<button id="somface" class="pick"></button>
+						<button id="swfface" class="pick"></button>
+					</div>
+
+					<!-- the best part of telegram ever: STICKERS!! -->
+					<div class="stickerList">
+						<button id="smileface" class="pick">
+						</button>
+						<button id="grinningface" class="pick"></button>
+						<button id="tearjoyface" class="pick"></button>
+					</div>
+				</div>
+
+				<div class="otherTools">
+					<button class="toolButtons emoji">
+						<i class="material-icons">sentiment_very_satisfied</i>
+					</button>
+
+					<button class="toolButtons audio">
+						<i class="material-icons">mic_none</i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ---------------------- -->
+	<!-- MENU AND OVERLAY STUFF -->
+	<!-- ---------------------- -->
+
+	<!-- MENU -->
+	<section class="menuWrap">
+		<div class="menu">
+			<div class="me userBg">
+				<div class="image"></div>
+
+				<div class="myinfo">
+					<p class="name">Zafar</p>
+					<p class="phone">+48 503 599 613</p>
+				</div>
+
+				<button class="cloud">
+					<i class="material-icons">keyboard_arrow_down</i>
+				</button>
+
+				<button class="saved">
+					<i class="material-icons">bookmark_border</i>
+				</button>
+
+				<button class="cloud">
+					<i class="material-icons">keyboard_arrow_down</i>
+				</button>
+			</div>
+			<nav>
+				<button class="ng">
+					<i class="material-icons">people_outline</i>
+
+					<span>New Group</span>
+				</button>
+
+				<button class="nc">
+					
+					<i class="fas fa-bullhorn"></i>
+
+					<span>New Channel</span>
+				</button>
+
+				<button class="cn">
+					<i class="material-icons">person_outline</i>
+
+					<span>Contacts</span>
+				</button>
+
+				<button class="cl">
+					<i class="material-icons">&#xE0B0;</i>
+
+					<span>Calls</span>
+				</button>
+
+				<!-- <a href="https://telegram.org/faq" target="_blank"> -->
+					<button class="settings">
+						<i class="material-icons">settings</i>
+
+						<span>Settings</span>
+					</button>
+				</a>
+
+				<button class="lo">
+					<i class="material-icons night">brightness_2</i>
+
+					<span>Night Mode</span>
+				</button>
+			</nav>
+
+			<div class="info">
+				<p>Telegram Desktop</p>
+				<p>Version 2.7.1 - <a target="_blank" href="https://en.wikipedia.org/wiki/Telegram_(messaging_service)">About</a></p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CONVERSATION OPTIONS MENU -->
+	<div class="moreMenu">
+		<button class="option about">See Info</button>
+		<button class="option notify">Disable Notifications</button>
+		<button class="option block">Block User</button>
+	</div>
+
+	<div class="moreMenuu">
+		<button class="option about">Add Account</button>
+		<button class="option notify">Edit profile</button>
+		<button class="option block">Log out</button>
+	</div>
+
+	<!-- MOBILE OVERLAY -->
+	<section class="switchMobile">
+		<p class="title">Oka</p>
+
+		<p class="desc">Buyog'iga telefondan kiraqoling :)))</p>
+
+		<a href="https://web.telegram.org/#/login"><button class="okay">OK</button></a>
+	</section>
+
+	<!-- PROFILE OPTIONS OVERLAY -->
+	<section class="config">
+		<section class="configSect">
+			<div class="profile">
+				<div class="configFlex">
+					<p class="confTitle">Settings</p>
+					<div class="confButtons">
+						<button class="configMore">
+							<i class="material-icons">more_vert</i>
+						</button>
+						<button class="configClear">
+							<i class="material-icons">clear</i>
+						</button>
+					</div>
+					
+				</div>
+				
+				<div class="image"></div>
+
+				<div class="side">
+					<p class="name">Zafar</p>
+					<p class="pStatus">Online</p>
+				
+		</section>
+
+		<section class="configSect second">
+
+			<!-- PROFILE INFO SECTION -->
+
+			<div class="information">
+				<ul>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">error_outline</i>
+							</button>
+							<p>Edit profile</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">notifications_none</i>
+							</button>
+							<p>Notifications</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">security</i>
+							</button>
+							<p>Privacy and Security</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">chat_bubble_outline</i>
+							</button>
+							<p>Chat Settings</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">folder_open</i>
+							</button>
+							<p>Folders</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">tune</i>
+							</button>
+							<p>Advanced</p>
+						</div>
+					</li>
+					<li>
+						<div class="infoItem">
+							<button>
+								<i class="material-icons">language</i>
+							</button>
+							<p>Language</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<!-- NOTIFICATIONS SECTION -->
+		
+
+		</section>
+		<section class="configSect">
+			<div class="scale">
+				<div class="scaleInfo">
+					<button class="scaleButton">
+						<i class="material-icons">remove_red_eye</i>
+					</button>
+					<p class="scaleText">Default interface scale</p>
+				</div>
+				<div >
+					<input type="checkbox" id="showSName" class="toggleTracer">
+	
+					<label class="check" for="showSName">
+						<div class="tracer"></div>
+					</label>
+				</div>
+				
+			</div>
+			<div class="progressBar">
+				<progress id="file" max="100" value="20"> 70% </progress>
+			</div>
+		</section>
+		<section class="configSect">
+			<div class="infoItem">
+				<button>
+					<i class="material-icons">adjust</i>
+				</button>
+				<p>Telegram FAQ</p>
+			</div>
+			<div class="infoItem">
+				<button>
+					<i class="material-icons">restore</i>
+				</button>
+				<p>Ask a Question</p>
+			</div>
+		</section>
+	</section>
+
+	<section class="configg">
+		<section class="configSect">
+			<div class="profile">
+				<div class="configFlex">
+					<p class="confTitle">User Info</p>
+					<div class="confButtons">
+						<button class="call tbButton">
+							<i class="material-icons">call</i>
+						</button>
+						<button class="tbButton configMoree">
+							<i class="material-icons">more_vert</i>
+						</button>
+						<button class="tbButton configClearr">
+							<i class="material-icons">clear</i>
+						</button>
+					</div>
+					
+				</div>
+				
+				
+
+				<div class="side">
+					<div class="info_image">
+						<img class="info_image" src="http://picsum.photos/70" alt="#">
+					</div>
+					<p class="userName">Muhammad</p>
+					<p class="userStatus">Online</p>
+				
+		</section>
+
+		<section class="configSect second">
+
+			<!-- PROFILE INFO SECTION -->
+
+			<div class="information">
+				<div class="info_flex">
+					<div class="info_logo">
+						<button class="info_icon">
+							<i class="material-icons">error_outline</i>
+						</button>
+					</div>
+					<div class="info_text">
+						<p class="info_phone"></p>
+						<p class="info_mobile">Mobile</p>
+						<p class="info_bio"></p>
+						<p class="bio">Bio</p>
+						<p class="info_username"></p>
+						<p class="infousername">Username</p>
+					</div>
+				</div>
+				<hr>
+				<div class="info_flex">
+					<div class="info_logo">
+						<button class="info_icon">
+							<i class="material-icons">notifications_none</i>
+						</button>
+					</div>
+					<div class="info_text">
+						<p class="info_nots">Notifications</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- NOTIFICATIONS SECTION -->
+		
+
+		</section>
+		
+		
+	</section>
+
+	<!-- DARK FRAME OVERLAY -->
+	<section class="overlay"></section>
+
+	<!-- -------------------------------- -->
+	<!-- SPECIFIC FOR CONNECTION WARNINGS -->
+	<!-- -------------------------------- -->
+	<div class="alerts">
+		Trying to reconnect...
+	</div>
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+
+	
+	<script src="js/index.js"></script>
+	<script src="script.js"></script>
+
+
+
+
+</body>
+
+</html>
